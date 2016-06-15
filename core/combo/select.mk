@@ -45,10 +45,10 @@ $(combo_var_prefix)RELEASE_CFLAGS := -Ofast -DNDEBUG -pipe -fivopts -ffunction-s
 $(combo_var_prefix)GLOBAL_CPPFLAGS := -Ofast -DNDEBUG -pipe -fivopts -ffunction-sections -fdata-sections -funswitch-loops -fomit-frame-pointer -ftracer -Wno-unused-parameter -Wno-unused-but-set-variable -Wno-maybe-uninitialized $(call cpp-option,$(-fira-loop-pressure,-fforce-addr,-funsafe-loop-optimizations,-funroll-loops,-ftree-loop-distribution,-fsection-anchors,-ftree-loop-im,-ftree-loop-ivcanon,-ffunction-sections,-fgcse-las,-fgcse-sm,-fweb,-ffp-contract=fast,-fgraphite,-floop-flatten,-floop-parallelize-all,-ftree-loop-linear,-floop-interchange,-floop-strip-mine,-floop-block))
 $(combo_var_prefix)GLOBAL_LDFLAGS := -Wl,-O1 -Wl,--as-needed -Wl,--relax -Wl,--sort-common -Wl,--gc-sections
 else
-$(combo_var_prefix)GLOBAL_CFLAGS := -fno-exceptions -Wno-multichar
+$(combo_var_prefix)GLOBAL_CFLAGS := -fno-exceptions -Wno-multichar -w
 $(combo_var_prefix)RELEASE_CFLAGS := -O2 -g
-$(combo_var_prefix)GLOBAL_CPPFLAGS :=
-$(combo_var_prefix)GLOBAL_LDFLAGS :=
+$(combo_var_prefix)GLOBAL_CPPFLAGS := -w
+$(combo_var_prefix)GLOBAL_LDFLAGS := -w
 endif
 endif
 

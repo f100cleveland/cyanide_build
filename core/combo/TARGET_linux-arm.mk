@@ -35,11 +35,10 @@ TARGET_$(combo_2nd_arch_prefix)ARCH_VARIANT := armv5te
 endif
 
 # Decouple NDK library selection with platform compiler version
-$(combo_2nd_arch_prefix)TARGET_NDK_GCC_VERSION := $(TARGET_NDK_CYANIDE_ROM)
+$(combo_2nd_arch_prefix)TARGET_NDK_GCC_VERSION := 5.4
 
 ifeq ($(strip $(TARGET_GCC_VERSION_EXP)),)
-$(combo_2nd_arch_prefix)TARGET_GCC_VERSION := $(TARGET_CYANIDE_ROM)
-$(combo_2nd_arch_prefix)TARGET_LEGACY_GCC_VERSION := $(TARGET_LEGACY_CYANIDE_ROM)
+$(combo_2nd_arch_prefix)TARGET_GCC_VERSION := 4.9
 else
 $(combo_2nd_arch_prefix)TARGET_GCC_VERSION := $(TARGET_GCC_VERSION_EXP)
 endif
@@ -110,9 +109,7 @@ $(combo_2nd_arch_prefix)TARGET_GLOBAL_CFLAGS += \
 			-ffunction-sections \
 			-fdata-sections \
 			-funwind-tables \
-			-fstack-protector \
 			-Wa,--noexecstack \
-			-Werror=format-security \
 			-D_FORTIFY_SOURCE=2 \
 			-fno-short-enums \
 			-no-canonical-prefixes \
@@ -167,6 +164,13 @@ $(combo_2nd_arch_prefix)TARGET_GLOBAL_CPPFLAGS += -fvisibility-inlines-hidden
 $(combo_2nd_arch_prefix)TARGET_RELEASE_CFLAGS := -DNDEBUG -Wstrict-aliasing=2 -fgcse-after-reload -frerun-cse-after-loop -frename-registers
 endif
 endif
+
+# More flags/options can be added here
+$(combo_2nd_arch_prefix)TARGET_RELEASE_CFLAGS := \
+			-DNDEBUG \
+			-fgcse-after-reload \
+			-frerun-cse-after-loop \
+			-frename-registers
 
 libc_root := bionic/libc
 libm_root := bionic/libm
